@@ -1,0 +1,46 @@
+//piramid of stars
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cout<<"enter the value of n : ";
+    cin>>n;
+    for (int i=1;i<=n;i++){
+        for (int space=1;space<=n-i;space++){
+            cout<<" ";
+        }
+          for (int j=n-i+1;j<=n+i-1;j++){
+            cout<<"*";
+          }
+          cout<<endl;
+    }
+}
+
+
+// gfg question to find smallest and second smallest 
+vector<int> minAnd2ndMin(int a[], int n) {
+    vector<int>ans;
+    int min1 = INT_MAX;
+    int min2 = INT_MAX;
+    for (int i=0;i<n;i++)
+    {
+        if (min1 > a[i])
+        {
+            min2 = min1;
+            min1 = a[i];
+        }
+           else if ( min1<a[i] && min2>a[i] )
+           {
+               min2=a[i];
+           }
+    }
+       if (min2 == INT_MAX){
+         ans.push_back(-1);
+       }  
+       else {
+    ans.push_back(min1);
+    ans.push_back(min2);
+       }
+    return ans;
+}
