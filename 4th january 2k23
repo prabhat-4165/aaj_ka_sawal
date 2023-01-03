@@ -1,0 +1,51 @@
+// print inverted hollow triangle
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+   int row;
+   cin>>row;
+   for(int i=1;i<=row;i++)
+   {
+      for(int j=1;j<i;j++)
+      {
+         cout<<" ";
+      }
+      for (int j=1;j<=(row*2 - (2*i-1));j++)
+      {   
+            
+         if ( (i==1 || j==1 || j==(row*2 - (2*i-1))) && j%2==1 )
+            cout<<"*";
+            else 
+              cout<<" ";
+      }
+      cout<<endl;
+   }
+}
+
+// reverse the image of a matrix
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+       
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        for (int i=0;i<row;i++)
+        {   
+            for(int j=i;j<col;j++)
+            {
+                swap(matrix[i][j],matrix[j][i]); 
+            }
+            
+        }
+          for (int j=0;j<col/2;j++){
+              for(int i=0;i<col;i++){
+                  swap(matrix[i][j],matrix[i][row-j-1]);
+              }
+          }  
+    }
+};
