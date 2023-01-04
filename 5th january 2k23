@@ -1,0 +1,16 @@
+//  replace 0's with 5's
+
+int convertFive(int n) {
+    int count = 1;
+    int k = n;
+    while (k)
+    {
+        int digit = k%10;
+        if (digit == 0){
+            n = n + pow(10,count-1)*5;
+        }
+        k = k/10;
+        count++;
+    }
+    return n;
+}
