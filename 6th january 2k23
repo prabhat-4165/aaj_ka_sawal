@@ -1,0 +1,31 @@
+// check if an array is sorted or not
+class Solution {
+  public:
+    bool arraySortedOrNot(int arr[], int n) {
+        // code here
+         bool k = true;
+         if (n<2)
+           return true;
+ for(int i=1;i<n;i++){
+  if (arr[i]<arr[i-1])
+     k = false;
+ }
+ return k;
+    }
+ };
+    
+    // find the union of two sets
+  class Solution {
+  public:
+    bool arraySortedOrNot(int arr[], int n) {
+        // code here
+         bool k = true;
+         if (n<2)
+           return true;
+ for(int i=1;i<n;i++){
+  if (arr[i]<arr[i-1])
+     k = false;
+ }
+ return k;
+    }
+ };
