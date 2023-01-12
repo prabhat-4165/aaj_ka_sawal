@@ -1,0 +1,37 @@
+// count prefixes of a given string
+int countPrefixes(vector<string>& words, string s) {
+        vector<string>v;
+        string ans;
+        bool flag;
+        for (int i=0;i<words.size();i++)
+        {    ans = "";
+            ans += words[i];
+            for (int i=0;i<ans.length();i++)
+            {    flag = 1; 
+                if (ans[i]!=s[i])
+                    {
+                        flag = 0;
+                        break;
+                    }
+            }
+            if (flag == 1)
+            {
+                v.push_back(ans);
+            }
+        }
+        return v.size();
+    }
+    
+    // first element to occure k times
+    
+    int firstElementKTime(int a[], int n, int k)
+    {
+        unordered_map<int,int>m;
+        for (int i=0;i<n;i++)
+        {
+            m[a[i]]++;
+            if (m[a[i]] == k)
+               return a[i];
+        }
+        return -1;
+    }
