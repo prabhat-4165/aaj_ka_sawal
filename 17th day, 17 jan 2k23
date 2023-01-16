@@ -1,0 +1,58 @@
+// find the highest number
+class Solution {
+public:
+    int findPeakElement(vector<int>& arr) 
+    {
+       int s =0;
+       int e = arr.size()-1;
+       int mid = s + (e-s)/2;
+       
+       if (arr.size() == 1)
+         return arr[0];
+       
+       if (arr[e] > arr[e-1])
+          return arr[e];
+          
+       while(s<=e)
+       {
+           if (arr[mid] > arr[mid+1] && arr[mid] > arr[mid-1])
+               return arr[mid];
+               
+               else if (arr[mid] < arr[mid+1])
+               s = mid+1;
+               
+               else if (arr[mid] < arr[mid-1])
+               e = mid - 1;
+               
+            mid = s + (e-s)/2;   
+       }
+       
+    }
+};
+
+
+// maximum number of words found in sentences
+
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+        int n = sentences.size();
+        string ans = "";
+        int count;
+        int maxi = 0;
+        for (int i=0;i<n;i++)
+        {
+            ans += sentences[i] + " ";
+                count = 0;
+                for (int i=0;i<ans.length();i++)
+                {
+                    if (ans[i] == ' ')
+                       count++;
+                }
+                   maxi = max(maxi,count);
+                   ans = "";
+        }
+        return maxi;
+    }  
+};
+
