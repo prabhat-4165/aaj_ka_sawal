@@ -1,0 +1,62 @@
+// create target array in the given order
+
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+       int n= nums.size();
+       vector<int> target(n,0);
+       for (int i=0;i<n;i++)
+       {
+           if (i>index[i])
+           {
+               for (int j=n-1;j>=index[i]+1;j--)
+               {
+                   target[j] = target[j-1];
+               } 
+                target[index[i]] = nums[i];
+           }
+               else
+                 target[index[i]] = nums[i];
+       } 
+       return target;
+    }
+};
+
+// lemonade change
+
+class Solution {
+public:
+    bool lemonadeChange(vector<int>& bills) {
+      int count5 = 0;
+      int count10 = 0;
+      int count20 = 0;
+      for (int i=0;i<bills.size();i++)
+      {
+          if (bills[i] == 5)
+              count5++;
+              else if (bills[i] == 10)
+              {   
+                  count5--;
+                  if (count5 < 0)
+                      return false;
+                      count10++;
+              } 
+                else 
+                {
+                    if (count10 > 0)
+                    {
+                        count10--;
+                        count5--;
+                    }
+                        else 
+                        {
+                            count5 = count5 - 3; 
+                        }
+                        if (count5 < 0)
+                           return false;
+                    count20++;
+                }
+      }
+        return true;
+    }
+};
