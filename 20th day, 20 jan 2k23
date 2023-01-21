@@ -1,0 +1,102 @@
+// count primes of leetcode
+class Solution {
+public:
+    int countPrimes(int n) {
+       int count = 0;
+       vector<bool>prime(n+1,true);  // initially all are primes
+
+       prime[0] = prime[1] = false; // make the number 0 and 1 are non-primes  
+       
+       for (int i=2;i<n;i++)
+       {
+           if (prime[i])
+               count++;
+
+               for(int j = 2*i; j<n;  j+=i)
+               {
+                   prime[j] = 0;  // making that number false in the table of i
+               }
+       }
+       return count;
+    }
+};
+
+// noldbach problem of codeforces
+
+#include<iostream>
+using namespace std;
+#include<bits/stdc++.h>
+
+int main (){
+int n,k;
+cin>>n>>k;
+vector<bool>prime(n+1,true);
+vector<int>ans;
+ int count = 0;
+prime[0] = prime[1] = false;
+
+for (int i=2;i<=n;i++)
+{
+    if (prime[i])
+        ans.push_back(i);
+        
+        for(int j=2*i; j<n;j+=i)
+        prime[j] = 0;
+}   
+    for (int i=0;i<ans.size()-1;i++)
+    {       
+        int l = (ans[i]+ans[i+1]+1);
+        vector<int>::iterator it = find( ans.begin(),ans.end(),l);
+        if (it != ans.end() )
+             count++;
+    }
+    if (count >= k)
+    cout <<"YES" <<endl;
+    else
+    cout<<"NO"<<endl;
+    
+    return 0;
+}    
+
+
+// GCD qureries codechef 1674 rating question
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+     int t,n,q,l,m;
+     
+     cin>>t;
+     while(t--)
+     {
+         cin>>n>>q;
+         int *a = new int[n];
+         int *f = new int[n];
+         int *b = new int[n];
+         
+         cin>>a[0];
+         f[0] = a[0];
+         for (int i=1;i<n;i++)
+         {
+             cin>>a[i];
+             f[i] = __gcd(f[i-1],a[i]);
+         }
+         
+         b[n-1] = a[n-1];
+         for (int i=n-2;i>=0;i--)
+              b[i] = __gcd(b[i+1],a[i]);
+              
+              for (int i=1;i<=q;i++)
+              {    
+                  cin>>l>>m;
+                  if (l==1)
+                     cout<<b[m]<<endl;
+                     else if (m==n)
+                        cout<<f[l-2]<<endl;
+                        else 
+                        cout<<__gcd(f[l-2],b[m])<<endl;
+              }
+     }
+	return 0;
+}
