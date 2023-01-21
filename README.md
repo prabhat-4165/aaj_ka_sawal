@@ -1,2 +1,2 @@
 # aaj_ka_sawal
-soluiton of the questions in gfg
+soluiton of the questions given by seniors......
