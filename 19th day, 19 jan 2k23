@@ -1,0 +1,68 @@
+// check if all characters have equal number of occurrences
+class Solution {
+public:
+    bool areOccurrencesEqual(string s) {
+        sort(s.begin(),s.end());
+        int count1 = 0;
+        int index;
+        for (int i=0;i<s.length();i++)
+        {
+            if (s[i] == s[i+1])
+               count1++;
+               else 
+               {
+                  index = i;
+                  break;
+               }
+        }   int count2 = 0;
+          for (int i = index+1;i<s.length();i++)
+          {
+              if (s[i] == s[i+1])
+                  count2++;
+                  else 
+                  {
+                      if (count2 != count1)
+                      return false;
+                       else 
+                         count2 = 0;
+                  }
+          }
+          return true;
+    }
+};
+
+// increasing decreasing string:
+
+class Solution {
+public:
+
+    string sortString(string s) {
+       int n = s.length();
+       vector<int>freq(26,0);
+       string ans = "";
+       for (auto x:s)
+           ++freq[x - 'a']; // to count no of occurence of character in array of size 26
+               while (n)
+               {
+                   for (int i=0;i<26;i++)
+                   {
+                       if (freq[i])
+                       {
+                           ans += ('a' + i);
+                           freq[i]--;
+                           n--;
+                       }
+                   }
+                   for (int i=25;i>=0;i--)
+                   {
+                       if (freq[i])
+                       {
+                           ans += ('a' + i);
+                           freq[i]--;
+                           n--;
+                       }
+                   }
+               }
+        return ans;
+    }
+};
