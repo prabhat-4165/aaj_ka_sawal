@@ -1,0 +1,85 @@
+// spiral matrix, leetcode question
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int> >& matrix) {
+        
+        
+        vector<int> ans;
+        int row = matrix.size();
+        int col = matrix[0].size();
+        
+        int count = 0;
+        int total = row*col;
+        
+        //index initialisation
+        int startingRow = 0;
+        int startingCol = 0;
+        int endingRow = row-1;
+        int endingCol = col-1;
+        
+        
+        while(count < total) {
+            
+            //print starting row
+            for(int index = startingCol; count < total && index<=endingCol; index++) {
+                ans.push_back(matrix[startingRow][index]);
+                count++;
+            }
+            startingRow++;
+            
+            //print ending column
+            for(int index = startingRow; count < total && index<=endingRow; index++) {
+                ans.push_back(matrix[index][endingCol]);
+                count++;
+            }
+            endingCol--;
+            
+            //print ending row
+            for(int index = endingCol; count < total && index>=startingCol; index--) {
+                ans.push_back(matrix[endingRow][index]);
+                count++;
+            }
+            endingRow--;
+            
+            //print starting column
+            for(int index = endingRow; count < total && index>=startingRow; index--) {
+                ans.push_back(matrix[index][startingCol]);
+                count++;
+            }
+            startingCol++;
+        } 
+        return ans;
+    }
+};
+
+// largest subarray with 0 sum, geekforgeeks question
+class Solution{
+    public:
+    int maxLen(vector<int>&a, int n)
+    {   
+       int l = 0;
+       unordered_map<int,int>mp;
+       int sum = 0;
+       int sum2 = 0;
+       for (int i=0;i<n;i++){
+           sum2 += a[i];
+           if (sum2 == 0)
+               l = i+1;
+       }
+       
+       for (int i=0;i<n;i++)
+       {
+           sum += a[i];
+           if (mp.find(sum-0) != mp.end())
+           {
+               l = max (l,(i-mp[sum-0]));
+           }
+             if (mp.find(sum) == mp.end())
+                mp[sum] = i;
+       }
+         return l;
+    }
+};
+
+
+
