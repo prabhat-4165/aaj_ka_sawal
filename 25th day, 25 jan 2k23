@@ -1,0 +1,37 @@
+// merge sorted array leetcode question
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        for(int i=m;i<m+n;i++){
+            nums1[i] = nums2[i-m];
+        }
+        sort(nums1.begin(), nums1.end());
+    }
+};
+
+// maximize matching of players with trainers leetcode question
+class Solution {
+public:
+    int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        sort(players.begin(),players.end());
+        sort(trainers.begin(),trainers.end());
+
+        int i=0;
+        int j=0;
+        int count = 0;
+        while(i<players.size() && j<trainers.size())
+        {
+           if(players[i] <= trainers[j])
+           {
+             count++;
+             i++;
+             j++;
+           }
+              else 
+              {
+                  j++;
+              }
+        }
+        return count;
+    }
+};
