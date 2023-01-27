@@ -1,0 +1,60 @@
+// 2269. Find the K-Beauty of a Number
+
+class Solution {
+public:
+    int checkBeauty(int num, int s, int e, int k,string output)
+    {   
+        int value = 0;
+        for (int i=s;i<=e;i++)
+        {
+             value += output[i] * pow(10,k-1);
+             k--;
+        }    
+        if(value == 0)
+        return 0;
+            if (num % value == 0)
+            return 1;
+            else 
+            return 0; 
+    }
+
+    int divisorSubstrings(int num, int k) {
+        int x = num;
+        string output = "";
+        int count = 0;
+        while(x)
+        {
+            output += x%10;
+            x = x/10; 
+        }
+        reverse(output.begin(),output.end());
+        for(int i=0;i<=output.length()-k;i++)
+        {
+            int e = i + k - 1;
+            count += checkBeauty(num,i,e,k,output);
+        }   
+        return count;
+    }
+};
+
+// 1748. Sum of Unique Elements
+
+class Solution {
+public:
+    int sumOfUnique(vector<int>& nums) {
+      int realCount = 0;
+      for(int i=0;i<nums.size();i++)
+      {
+          int count = 0;
+          for(int j=0;j<nums.size();j++)
+          {
+              if (nums[i] == nums[j])
+                 count++;
+          }
+             if (count == 1)
+               realCount += nums[i];
+               count = 0;
+      } 
+      return realCount;
+    }
+};
