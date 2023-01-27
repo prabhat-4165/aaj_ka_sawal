@@ -1,0 +1,60 @@
+// 1876. Substrings of Size Three with Distinct Characters
+
+class Solution {
+public:
+    int countGoodSubstrings(string s) {
+       int count = 0;
+        if (s.length() < 3)
+            return 0;
+
+            for (int i=0;i<s.length()-2;i++)
+            {
+                if(s[i] != s[i+1] && s[i] != s[i+2] && s[i+1] != s[i+2])
+                    count++;
+            }
+            return count;
+    }
+};
+
+// 2379. Minimum Recolors to Get K Consecutive Black Blocks
+
+class Solution {
+public:
+     int findOperation(string s)
+     {  int count = 0;
+       for(int i = 0;i<s.length();i++)
+       {
+           if (s[i] == 'W')
+             count++;
+       }
+         return count;
+     }
+   
+    int minimumRecolors(string blocks, int k) {
+      int tempcount = 0;
+      int realcount = 0;
+      int mini = INT_MAX;
+      string ans = "";
+      for (int i=0;i<blocks.length();i++)
+      {
+          if(tempcount < k)
+          {
+              ans += blocks[i];
+              tempcount++;
+          }
+            else 
+            {
+               tempcount = 0;
+               i = i-k;
+               realcount = findOperation(ans);
+               mini = min(mini,realcount);
+               ans = "";
+            }
+      }  
+         realcount = findOperation(ans);
+               mini = min(mini,realcount);
+
+        return mini;       
+    }
+};
+
