@@ -1,0 +1,61 @@
+// 557. Reverse Words in a String III
+
+class Solution {
+public:
+    string reverseWords(string s) {
+     s += " ";
+     string ans = "";
+     string temp = "";
+     for (int i=0;i<s.length();i++)
+     {  
+         if (s[i] != ' ')
+        temp += s[i];
+        else 
+        {
+          for (int j=temp.length()-1;j>=0;j--)
+            ans += temp[j];
+      
+             temp = "";
+              if (i != s.length()-1)
+                ans += " ";
+        }
+     }   
+     return ans;
+    }
+};
+
+// Modified Numbers and Queries GFG
+
+class Solution {
+  public:
+    vector<int> IfPrime(int n)
+    {
+        vector<int>ans;
+        vector<bool>prime(n+1,true);
+        prime[0] = prime[1] = 0;
+        for (int i=2;i<=n;i++)
+        {
+            if (prime[i])
+            ans.push_back(i);
+            
+            for(int j=i*i;j<=n;j+=i)
+              prime[j] = 0;
+        }
+        return ans;
+    }
+    
+    
+    int sumOfAll(int l, int r){
+      int sum = 0;
+      vector<int>prime;
+      prime = IfPrime(r);
+      for(int i=l;i<=r;i++){
+         for(int j=0;prime[j]<=i && j<prime.size() ;j++)
+         {
+             if (i%prime[j] == 0)
+                sum += prime[j];
+         }
+      }
+      return sum;
+    }
+};
