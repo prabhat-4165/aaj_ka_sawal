@@ -1,0 +1,60 @@
+// 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+
+class Solution {
+public:
+    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
+        int n = arr.size();
+        int pre_sum[n];
+        int sum = 0;
+        int count = 0;
+       
+       
+        for (int i=0;i<n;i++)
+        {
+            sum += arr[i];
+            pre_sum[i] = sum;
+            if ( ((i-k)>=0)  && (pre_sum[i]-(threshold*k) >= pre_sum[i-k]) )
+            count++;
+            else if ( ((i-k)==-1)  && (pre_sum[i]-(threshold*k) >= 0) )
+            {
+                count++;
+            }
+        }
+       return count;
+    }
+};
+
+// 1175. Prime Arrangements 
+
+class Solution {
+   
+public:
+    int countprimes(int n){
+        vector<int>prime(n+1,true);
+        prime[0] = prime[1] = false;
+        int count = 0;
+        for (int i=2;i<=n;i++)
+        {
+            if (prime[i])
+               count++;
+            for (int j=i*i;j<=n;j = j+i)
+                 prime[j] = false;   
+        }
+        return count;
+    }
+        long long factorial(int n)
+       {
+             long long fact = 1;
+           for (int i=n;i>=1;i--)
+           fact = (fact * i)%1000000007;
+           return fact;
+       }
+
+    int numPrimeArrangements(int n) {
+      int m = 1000000007;
+      int cp = countprimes(n);
+     
+      return (factorial(cp)*factorial(n-cp))%m;
+    }
+};
+
