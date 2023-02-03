@@ -1,0 +1,52 @@
+// first negative number inevery window of size of k 
+
+vector<long long> printFirstNegativeInteger(long long int a[],
+                                             long long int n, long long int k) {
+          vector<long long> ans;
+          list<long long>li;
+          
+          long long i = 0;
+          long long j = 0;
+          
+          while (j<n)
+          {
+              if (a[j] < 0)
+                 li.push_back(a[j]);
+                 
+                if (j-i+1 < k)
+                  {
+                      j++;
+                  }
+                  else if (j-i+1 == k)
+                  {
+                      ans.push_back(li.front());
+                      if (a[i]==li.front())
+                         li.pop_front();
+                         
+                    i++;
+                    j++;
+                  }
+          }
+          return ans;
+ }
+ 
+ // 350 intersection of two arrays
+ 
+ class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+       vector<int>ans;
+       unordered_map<int,int>m;
+       for (int i=0;i<nums1.size();i++)
+            m[nums1[i]]++;
+
+            for (int i=0;i<nums2.size();i++){
+                if (m[nums2[i]] > 0 ){
+                    ans.push_back(nums2[i]);
+                    m[nums2[i]]--;
+                }
+            }
+            return ans;
+    }
+};
+
