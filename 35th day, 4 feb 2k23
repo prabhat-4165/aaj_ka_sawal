@@ -1,0 +1,43 @@
+// 1893. Check if All the Integers in a Range Are Covered
+class Solution {
+public:
+    bool isCovered(vector<vector<int>>& ranges, int left, int right) {
+          for (int i=left;i<=right;i++)
+          {   
+             bool flag = false;
+             for (int j=0;j<ranges.size();j++)
+             {
+                 if ( i>= ranges[j][0] && i<=ranges[j][1])
+                 {
+                     flag = true;
+                     break;
+                 }
+             }  
+               if (flag == false)
+                  return false;  
+          }
+          return true;
+    }
+};
+
+// 2428. Maximum Sum of an Hourglass
+
+class Solution {
+public:
+    int maxSum(vector<vector<int>>& grid) {
+     int n = grid.size();
+     int m = grid[0].size();
+     int maxi = INT_MIN;
+     for (int i=1;i+1<n;i++)
+     {
+         for (int j=1;j+1<m;j++)
+         {
+             int sum = grid[i][j] + grid[i-1][j] + grid[i+1][j] + grid[i-1][j-1] + 
+               grid[i-1][j+1] + grid[i+1][j-1] + grid[i+1][j+1];
+               maxi = max(maxi,sum);
+         }
+     }    
+        return maxi;
+    }
+};
+
