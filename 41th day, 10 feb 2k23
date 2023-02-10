@@ -1,0 +1,55 @@
+// 69 sqrt(x)
+
+class Solution {
+public:
+    int mySqrt(int x) {
+       if (x==0)
+       return 0;
+       if (x==1)
+       return 1;
+       int p;
+       for (long int i=1;i<=x/2;i++)
+       {
+           if (i*i <= x && (i+1)*(i+1) > x)
+            {    p=i;
+                break;
+            }
+       } 
+       return p;
+    }
+};
+
+// 2424 longest uploaded prefix
+
+class LUPrefix {
+public:
+    vector<int>v;
+    int it = 0;
+    LUPrefix(int n) {
+        vector<int>temp(n,-1);
+        v = temp;
+    }
+    
+    void upload(int video) {
+        v[video-1] = 1;
+        while (it <  v.size())
+        {
+            if (v[it] == -1) break;
+            else
+            it++;
+        } 
+    }
+    
+    int longest() {
+        return it;
+    }
+};
+
+/**
+ * Your LUPrefix object will be instantiated and called as such:
+ * LUPrefix* obj = new LUPrefix(n);
+ * obj->upload(video);
+ * int param_2 = obj->longest();
+ */
+ 
+ 
