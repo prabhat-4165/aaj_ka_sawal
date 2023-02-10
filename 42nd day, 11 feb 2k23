@@ -1,0 +1,56 @@
+// Balloon everywhere gfg question
+
+class Solution{
+public:
+    int maxInstance(string s){
+        string check = "balloon";
+        unordered_map<int,int>m;
+        for (int i=0;i<s.length();i++)
+           m[s[i]]++;
+           
+           int count = 0;
+           while (m['b'] != 0 && m['a'] != 0 && m['l'] != 0 && m['o'] != 0 && m['n'] != 0) 
+           {   
+               bool flag = true;
+               for (int i=0;i<check.length();i++)
+               {
+                   if (m.find(check[i]) != m.end() && m[check[i]] > 0)
+                   {
+                       m[check[i]]--;
+                   }
+                      else{
+                         flag = false;
+                      }
+               }
+                  if (flag) count++;
+           }
+           return count;
+    }
+};
+
+// 162 find peak element
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 1)
+            return 0;
+        if (nums[0] > nums[1])
+            return 0;
+        if (nums[n - 1] > nums[n - 2])    
+            return n - 1;    
+        int low = 1, high = n - 2;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1])
+                return mid; 
+            else if (nums[mid - 1] > nums[mid])
+                high = mid - 1;
+            else
+                low = mid + 1;        
+        }
+        return -1;
+    }
+};
