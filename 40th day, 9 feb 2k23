@@ -1,0 +1,71 @@
+// count number of free cells gfg question 
+
+class Solution{
+  public:
+    vector<long long int> countZero(int n, int k, vector<vector<int>>& arr)
+  {
+      //Code Here
+      vector<long long int>ans(k,0);
+      //here set is used to remove ambiguous task
+      unordered_set<int>r;
+      unordered_set<int>c;
+      int i=0;
+      int tc,tr,total_one;
+      while(i<k)
+      {
+         r.insert(arr[i][0]);
+
+         c.insert(arr[i][1]);
+
+         //total rows filled
+
+         tr=r.size();
+
+         //total column filled 
+
+         tc=c.size();
+
+         //number of one in grid
+
+         total_one=((tc+tr)*n)-(tc*tr);
+
+         //number of remaining zero's in grid
+         ans[i]=n*n-total_one;
+         i++;
+      }
+      return ans;
+  }
+};
+
+// 439 find all anagrams in a string
+
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int len_s = s.length();
+        int len_p = p.length();
+
+        if (len_s < len_p) return {};
+
+        vector<int> freq_p(26,0);
+        vector<int> window(26,0);
+
+        for (int i=0;i<len_p;i++)
+        {
+            freq_p[p[i]-'a']++;
+            window[s[i]-'a']++;
+        }
+        vector<int>ans;
+           if (freq_p == window)
+               ans.push_back(0);
+
+               for (int i = len_p;i<len_s;i++)
+               {
+                   window[s[i-len_p]-'a']--;
+                   window[s[i]-'a']++;
+                   if (window == freq_p)
+                   ans.push_back(i-len_p+1);
+               }
+        return ans;       
+    }
+};
