@@ -1,0 +1,58 @@
+// 395. Longest Substring with At Least K Repeating Characters
+
+class Solution {
+public:
+    int longestSubstring(string s, int k) {
+        int n = s.length();
+        if (k == 1 || k == 0)
+        return n;
+        unordered_map<char,int>mp(26);
+        for (auto c:s)
+        {
+            mp[c]++;
+        }
+            int i=0,a=0,b=0;
+            while (i<n && mp[s[i]] >= k)
+              i++;
+
+             if (i==n)
+                return n;
+
+                a = longestSubstring(s.substr(0,i),k);
+                b = longestSubstring(s.substr(i+1),k);
+                return max(a,b);
+    }
+};
+
+// 438. Find All Anagrams in a String
+
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+        int len_s = s.length();
+        int len_p = p.length();
+
+        if (len_s < len_p) return {};
+
+        vector<int> freq_p(26,0);
+        vector<int> window(26,0);
+
+        for (int i=0;i<len_p;i++)
+        {
+            freq_p[p[i]-'a']++;
+            window[s[i]-'a']++;
+        }
+        vector<int>ans;
+           if (freq_p == window)
+               ans.push_back(0);
+
+               for (int i = len_p;i<len_s;i++)
+               {
+                   window[s[i-len_p]-'a']--;
+                   window[s[i]-'a']++;
+                   if (window == freq_p)
+                   ans.push_back(i-len_p+1);
+               }
+        return ans;       
+    }
+};
