@@ -1,0 +1,45 @@
+// 1342. Number of Steps to Reduce a Number to Zero
+
+class Solution {
+public:
+    int numberOfSteps(int num) {
+     int count = 0;
+     while (num) {
+         if (num & 1)
+            num = num -1;
+            else {
+                num = num / 2;
+            }
+            count++;
+     }
+       return count;
+    }
+};
+
+// 28. Find the Index of the First Occurrence in a String
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int n = haystack.length();
+        int k = needle.length();  
+         string check = "";
+         int index = -1;
+         for (int i=0;i<=n-k;i++)
+         {
+             for (int j=i;j<i+k;j++)
+               check += haystack[j];
+
+               if (check == needle)
+               {
+                   index = i;
+                   break;
+               }
+                 else {
+                     check = "";
+                 }
+         }  
+        return index;
+    }
+}; 
+
