@@ -1,0 +1,44 @@
+// GFG Numbers containing 1, 2 and 3
+
+//Function to find all the numbers with only 1,2 and 3 in their digits.
+void findAll() {
+    for (int i=1;i<=1000000;i++){
+        int n = i;
+        bool flag = false;
+        while (n){
+            int digit = n%10;
+            if (digit != 1 && digit != 2 && digit != 3)
+            {   flag = true;
+                break;
+            }
+            n = n/10;
+        }
+          if (flag == false)
+              mp[i] = 1;
+    }
+}
+
+// GFG Maximum AND Value
+
+class Solution
+{
+    public:
+    // Function for finding maximum AND value.
+    int maxAND (int arr[], int N)
+    {
+        int ans=0;
+         for(int i=31;i>=0;i--){
+             int k=0;
+             for(int j=0;j<N;j++){
+                 if((arr[j]&(1<<i))!=0){
+                     if((arr[j]&ans)==ans)
+                     k++;
+                 }
+             }
+             if(k>=2){
+                 ans+= (1<<i);
+             }
+         }
+         return ans;
+    }
+};
