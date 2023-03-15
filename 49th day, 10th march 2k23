@@ -1,0 +1,74 @@
+// binary watch leetcode
+
+class Solution {
+public:
+
+
+    int count(int n){
+        int count1 = 0;
+        while (n){
+            int bit = n%2;
+            count1 += bit;
+            n = n/2;
+        }
+        return count1;
+    }
+
+    vector<string> readBinaryWatch(int turnedOn) {
+        vector<string>ans;
+        for (int i=0;i<12;i++){
+            for (int j=0;j<60;j++){
+                if (count(i)+count(j) == turnedOn){
+                    string res = "";
+                    res += (to_string(i));
+                    res += (":");
+                    if (j<10){
+                         res += (to_string(0));
+                         res += (to_string(j));
+                    }
+                    else {
+                        res += (to_string(j));
+                    }
+                    ans.push_back(res);
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+// leetcode 1850. Minimum Adjacent Swaps to Reach the Kth Smallest Number
+
+class Solution {
+public:
+        int getMinSwaps(string num, int k) {
+        
+        string s = num;
+
+        int res = 0;
+
+        while(k--) next_permutation(s.begin(),s.end());
+
+    
+        for(int i = 0; i < num.size(); ++i)
+        {
+            if(num[i] != s[i])
+            {
+               int j = i + 1;
+
+               while(num[j] != s[i]) j++;
+               
+               while(j > i)
+               {
+                   swap(num[j], num[j-1]);
+                   res++;
+                   j--;
+               }
+               
+            }
+        }
+
+        return res;
+    } 
+    
+};
