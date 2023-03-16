@@ -1,0 +1,63 @@
+// combinatonal sum 1 leetcode
+
+class Solution {
+public:
+   void findans(int ind, int target, vector<int> &res,vector<int> &candidates, vector<vector<int>> &ans)
+   {
+         if(ind == candidates.size()){
+             if (target==0)
+                  ans.push_back(res);
+                  return ;
+         }
+
+          if (candidates[ind] <= target){
+                res.push_back(candidates[ind]);
+                findans(ind,target-candidates[ind],res,candidates,ans);
+                res.pop_back();     
+          }
+
+          findans(ind+1,target,res,candidates,ans);
+   }
+
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>res;
+        findans(0,target,res,candidates,ans);
+        return ans;
+    }
+};
+
+// combination sum 2 leetcode 
+
+class Solution {
+public:
+
+    void findans(int ind, int target, vector<int> &res, vector<int> &candidates, vector<vector<int>> &ans)
+    {
+            if (target == 0){
+                 ans.push_back(res);
+                 return ;
+            }
+
+          for (int i=ind;i<candidates.size();i++){
+              if (i>ind && candidates[i] == candidates[i-1])
+                     continue;
+                     if (candidates[i] > target) 
+                     break;
+                     res.push_back(candidates[i]);
+                     findans(i+1, target-candidates[i],res,candidates,ans);
+                     res.pop_back();
+          }
+        
+    }
+
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>res;
+        sort(candidates.begin(),candidates.end());
+        findans(0,target,res,candidates,ans); 
+               
+        return ans;
+    }
+};
+
